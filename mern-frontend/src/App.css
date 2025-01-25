@@ -1,42 +1,312 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Hero Section Styling */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Background Video */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Green Overlay */
+.green-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 38, 12, 0.4); /* Slight green overlay */
+  z-index: -1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Hero Content */
+.hero-content {
+  z-index: 1;
+  padding: 20px;
 }
 
-.card {
-  padding: 2em;
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.read-the-docs {
-  color: #888;
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cta-btn {
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.start-project-btn {
+  background-color: #228b22;
+  color: white;
+}
+
+.start-project-btn:hover {
+  background-color: #006400;
+}
+
+.browse-projects-btn {
+  background-color: white;
+  color: #228b22;
+  border: 2px solid #228b22;
+}
+
+.browse-projects-btn:hover {
+  background-color: #228b22;
+  color: white;
+}
+
+
+
+
+
+
+
+
+/* Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #1b1e1b00; /* Green theme */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navbar-container {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-logo:hover {
+  color: #aaf0d1; /* Lighter green */
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #aaf0d1; /* Lighter green */
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-btn {
+  background-color: white;
+  color: #228b22;
+  border: none;
+  padding: 8px 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-btn:hover {
+  background-color: #aaf0d1;
+}
+
+/* Sign-In Button */
+.signin-btn {
+  background-color: white;
+  color: #228b22;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.signin-btn:hover {
+  background-color: #aaf0d1;
+  color: #006400;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* StartProject.css */
+/* Start Funding Page Container */
+.start-funding-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-image:  url("../src/assets/start-project.jpg");;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 78px;
+  
+
+}
+
+/* Form Container */
+.start-funding-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Form Title */
+.start-funding-form h2 {
+  text-align: center;
+  color: #228b22;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+/* Label and Input Styling */
+.start-funding-form label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.start-funding-form input,
+.start-funding-form textarea,
+.start-funding-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.start-funding-form input:focus,
+.start-funding-form textarea:focus,
+.start-funding-form select:focus {
+  border-color: #228b22;
+  outline: none;
+}
+
+/* Reason for Fundraising */
+.start-funding-form .textarea-container {
+  margin-bottom: 30px;
+}
+
+.start-funding-form textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+/* Image/Video Upload */
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.file-upload-container input[type="file"] {
+  border: none;
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: #228b22;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #006400;
 }
