@@ -2,6 +2,7 @@ import React from "react";
 import video1 from "../assets/video1.mp4"; 
 import { Link } from "react-router-dom";
 import '../App.css';
+import CardComponent from "../components/CardComponent";
 import Maincard from "../components/Maincard ";
 
 const Home = () => {
@@ -34,12 +35,16 @@ const Home = () => {
         <Link to="/start-project">
         <button className="cta-btn start-project-btn">Start a Project</button>
       </Link>
-          <button className="cta-btn browse-projects-btn">Browse Projects</button>
+          {/* <button className="cta-btn browse-projects-btn">Browse Projects</button> */}
+          <Link to="/browse">
+        <button className="cta-btn browse-projects-btn">Browse Projects</button>
+      </Link>
         </div>
       </div>
     </div>
 
-    <Maincard  />
+    {/* <Maincard  /> */}
+    <CardComponent/>
       
     </>
   );
