@@ -309,4 +309,393 @@
 
 .submit-btn:hover {
   background-color: #006400;
+} 
+
+
+
+
+
+
+
+
+.browse-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin:80px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.category-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #228b22;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category-btn:hover {
+  background-color: #006400;
+}
+
+.category-btn.selected {
+  background-color: #006400;
+}
+
+.selected-categories {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.selected-categories ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.selected-categories li {
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+
+/* 
+cards */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background-color: #f5f5f5;
+  padding: 18px;
+  margin:70px;
+  width: auto;
+}
+
+
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* Left panel takes more space */
+  gap: 18px;
+  width: 90%;
+  max-width: 1000px;
+  justify-content: center;
+  align-items: start; /* Align items at the top of the container */
+}
+
+.left-panel {
+  grid-column: span 1;
+  margin-top: 25%;
+  
+}
+
+.right-panel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.left-panel-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  height: auto; /* Specific height for left panel card */
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 370px;
+}
+
+.right-panel-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width:290px; 
+}
+
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card-donations {
+  font-size: 14px;
+  color: rgb(118, 101, 101);
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #4caf50;
+}
+
+.card-raised {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+@media (max-width: 768px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-panel, .right-panel {
+    flex: 1;
+    width: 100%;
+  }
+
+  .right-panel {
+    padding-left: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* footer */
+.footer {
+  background-color: #052d05f0;
+  color: #fff;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.footer-links li {
+  margin: 0;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #4caf50;
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: #bbb;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+
+/* info */
+/* Container for Info component */
+/* Main Container */
+.info-container {
+  display: flex;
+  justify-content: space-between; /* Align text content left and image right */
+  align-items: flex-start; /* Align content to the top */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 85px auto;
+}
+
+/* Text Content */
+.info-text-content {
+  width: 45%; /* Text content on the left side */
+  padding-right: 20px; /* Space between text and image */
+}
+
+.info-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.info-description {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.info-button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.info-donate-button, .info-fundraiser-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.info-donate-button {
+  background-color: #ff4b5c;
+  color: white;
+}
+
+.info-donate-button:hover {
+  background-color: #e0464e;
+}
+
+.info-fundraiser-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.info-fundraiser-button:hover {
+  background-color: #45a049;
+}
+
+/* Image Container */
+.info-image-container {
+  width: 50%; /* Image takes up 50% */
+}
+
+.info-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart Container */
+.info-chart-container {
+  width: 100%; /* Full width */
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Center the chart */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .info-container {
+    flex-direction: column; /* Stack content vertically on smaller screens */
+    align-items: center; /* Center all content */
+  }
+
+  .info-image-container {
+    width: 80%; /* Larger image size on mobile */
+    margin-bottom: 20px; /* Space between image and text */
+  }
+
+  .info-text-content {
+    width: 80%; /* Text content also takes more space */
+    padding-right: 0; /* Remove padding */
+    text-align: center; /* Center text on small screens */
+  }
+
+  .info-chart-container {
+    width: 80%; /* Full width chart below image */
+  }
 }

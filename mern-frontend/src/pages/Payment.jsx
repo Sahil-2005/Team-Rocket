@@ -1,131 +1,106 @@
-// import React, { useState, useEffect } from 'react';
-// import { loadStripe } from '@stripe/stripe-js';
-// import { Elements } from '@stripe/react-stripe-js';
-// import CheckoutForm from '../components/CheckoutForm';
-
-// const stripePromise = loadStripe('YOUR_PUBLISHABLE_KEY');
-
-// const Payment = () => {
-//     const [clientSecret, setClientSecret] = useState('');
-
-//     useEffect(() => {
-//         // Fetch payment intent from backend
-//         fetch('http://localhost:5000/api/payments/create-payment-intent', {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify({ amount: 1000 }), // Amount in cents
-//         })
-//             .then(res => res.json())
-//             .then(data => setClientSecret(data.clientSecret));
-//     }, []);
-
-//     const appearance = { theme: 'stripe' };
-//     const options = { clientSecret, appearance };
-
-//     return (
-//         <div>
-//             <h1>Donate</h1>
-//             {clientSecret ? (
-//                 <Elements options={options} stripe={stripePromise}>
-//                     <CheckoutForm />
-//                 </Elements>
-//             ) : (
-//                 <p>Loading...</p>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default Payment;
-
-
-
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import './Payment.css'; // Import the CSS file for styling
 
-// Replace with your actual Stripe Publishable Key
-const stripePromise = loadStripe('pk_test_YourPublishableKey');
+const stripePromise = loadStripe('pk_test_51Ql4mCIxI5wR16xMoJbNVm1kYnP6BPckR4cVE3nYU7zCNXxJNEFXE0Sa20wfW3O48bCAJsSTv4NHt69V54EHLkBX003SqzA9dJ');
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const [amount, setAmount] = useState('');
   const [message, setMessage] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (!stripe || !elements) return;
-
-//     setIsProcessing(true);
-//     const { error, paymentIntent } = await stripe.confirmCardPayment(
-//       '<Insert Client Secret Here>',
-//       {
-//         payment_method: {
-//           card: elements.getElement(CardElement),
-//         },
-//       }
-//     );
-
-//     if (error) {
-//       setMessage(error.message);
-//     } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-//       setMessage('Payment successful!');
-//     }
-
-//     setIsProcessing(false);
-//   };
 
 
-const handleSubmit = async (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
     if (!stripe || !elements) return;
   
-    setIsProcessing(true);
-  
-    // Fetch client secret from backend
-    const response = await fetch('http://localhost:5000/api/payment/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: 5000 }), // Replace with actual amount
-    });
-    const { clientSecret } = await response.json();
-  
-    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-      },
-    });
-  
-    if (error) {
-      setMessage(error.message);
-    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-      setMessage('Payment successful!');
+    if (!amount || isNaN(amount) || amount <= 0) {
+      setMessage('Please enter a valid amount.');
+      return;
     }
   
-    setIsProcessing(false);
+    try {
+      const res = await fetch('http://localhost:5000/api/payment/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: Math.round(amount * 100) }), // Convert amount to cents
+      });
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        setMessage(`Server error: ${data.error || 'Unknown error'}`);
+        return;
+      }
+  
+      console.log('Received from backend:', data);  // Log the response from backend
+  
+      const { clientSecret } = data;
+  
+      // Ensure clientSecret is not missing or undefined
+      if (!clientSecret) {
+        setMessage('Missing client secret!');
+        return;
+      }
+  
+      // Confirm payment
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      });
+  
+      if (error) {
+        setMessage(`Payment failed: ${error.message}`);
+      } else if (paymentIntent.status === 'succeeded') {
+        setMessage('Payment successful!');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('An error occurred. Please try again.');
+    }
   };
   
 
+
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" disabled={!stripe || isProcessing}>
-        {isProcessing ? 'Processing...' : 'Pay Now'}
-      </button>
-      {message && <p>{message}</p>}
-    </form>
+    <div className="payment-container">
+      <h2>Payment Page</h2>
+      <form onSubmit={handleSubmit} className="payment-form">
+        <div className="form-group">
+          <label htmlFor="amount">Amount (USD):</label>
+          <input
+            type="number"
+            id="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter amount"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="card-details">Card Details:</label>
+          <CardElement id="card-details" className="card-element" />
+        </div>
+        <button type="submit" disabled={!stripe} className="pay-button">
+          Pay
+        </button>
+        {message && <p className="message">{message}</p>}
+      </form>
+    </div>
   );
 };
 
-const Payment = () => {
-  return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements>
-  );
-};
+const Payment = () => (
+  <Elements stripe={stripePromise}>
+    <CheckoutForm />
+  </Elements>
+);
 
 export default Payment;
+

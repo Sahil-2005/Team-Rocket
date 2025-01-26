@@ -2,9 +2,11 @@ import React from "react";
 import video1 from "../assets/video1.mp4"; 
 import { Link } from "react-router-dom";
 import '../App.css';
+import Maincard from "../components/Maincard ";
 
 const Home = () => {
   return (
+    <>
     <div className="hero-section">
       {/* Background Video */}
       <video
@@ -36,6 +38,10 @@ const Home = () => {
         </div>
       </div>
     </div>
+
+    <Maincard  />
+      
+    </>
   );
 };
 

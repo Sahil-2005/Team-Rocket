@@ -1,0 +1,48 @@
+.top-donator {
+    background-color: #f7f7f7;
+    border: 2px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 350px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .top-donator-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .donpic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .donator-name {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .top-donator-amount {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
+  .top-donator-text {
+    color: green;
+    text-decoration: underline;
+    margin-left: 10px;
+    font-size: 18x;
+    text-align: center
+  }
+
+  .showpop{
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 33%;
+  }
